@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>20 Yillik Uchrashuv Taklifnoma</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --green:  #1b4535;
+  --green2: #122d23;
+  --green3: #235e42;
+  --gold:   #c9a84c;
+  --gold2:  #e8c96a;
+  --gold3:  #a07830;
+  --goldl:  #f0dea0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background: #0d1f18;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* ── wrapper: 9:16 card ── */
+.scene {
+  width:  min(100vw, 430px);
+  height: min(100vh, calc(min(100vw,430px) * 16/9));
+  perspective: 1400px;
+  position: relative;
+}
+
+/* landscape phones: swap to fill height */
+@media (orientation: landscape) {
+  .scene {
+    height: 100vh;
+    width:  calc(100vh * 9/16);
+  }
+}
+
+.card {
+  width: 100%; height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.1s cubic-bezier(0.77,0,0.18,1);
+  cursor: pointer;
+}
+.card.flipped { transform: rotateY(180deg); }
+
+@keyframes cardShake {
+  0%,100% { transform: translateX(0) rotate(0deg); }
+  10% { transform: translateX(-10px) rotate(-2deg); }
+  20% { transform: translateX(10px) rotate(2deg); }
+  30% { transform: translateX(-9px) rotate(-2deg); }
+  40% { transform: translateX(9px) rotate(2deg); }
+  50% { transform: translateX(-6px) rotate(-1deg); }
+  60% { transform: translateX(6px) rotate(1deg); }
+  70% { transform: translateX(-4px) rotate(-0.5deg); }
+  80% { transform: translateX(4px) rotate(0.5deg); }
+  90% { transform: translateX(-2px) rotate(0deg); }
+}
+.card.shaking {
+  animation: cardShake 0.8s cubic-bezier(0.36,0.07,0.19,0.97) both !important;
+  transition: none !important;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* ════════════════════════════
+   FACE 1 — COVER
+════════════════════════════ */
+.front {
+  background: linear-gradient(160deg, var(--green3) 0%, var(--green) 45%, var(--green2) 100%);
+}
+
+/* noise texture overlay */
+.front::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* gold border lines */
+.front-border {
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(201,168,76,0.55);
+  z-index: 2;
+  pointer-events: none;
+}
+.front-border::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(201,168,76,0.25);
+}
+
+/* SVG ornament corners */
+.orn {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+.orn svg { display: block; }
+.orn-tl { top: 12px; left: 12px; }
+.orn-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+.orn-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.orn-br { bottom: 12px; right: 12px; transform: scale(-1,-1); }
+
+/* floating particles */
+.particles { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.p {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: floatUp var(--d) var(--delay) infinite ease-in-out;
+  opacity: 0;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  15%  { opacity: 0.7; }
+  85%  { opacity: 0.2; }
+  100% { transform: translateY(-110%) translateX(var(--dx)) scale(0.3); opacity: 0; }
+}
+
+/* center content */
+.front-content {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 36px;
+  gap: 0;
+}
+
+.f-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(7px, 1.8vw, 10px);
+  font-weight: 400;
+  letter-spacing: 0.45em;
+  color: var(--gold);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 1s 0.4s forwards;
+}
+.f-line {
+  display: flex; align-items: center; gap: 10px;
+  width: 70%; margin: 10px 0;
+  opacity: 0; animation: fadeUp 1s 0.6s forwards;
+}
+.f-line-seg { flex:1; height:1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+.f-line-dot { color: var(--gold); font-size: 10px; }
+
+.f-happy {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(13px, 3.2vw, 18px);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--goldl);
+  text-transform: uppercase;
+  opacity: 0; animation: fadeUp 1s 0.8s forwards;
+}
+.f-number {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(72px, 18vw, 110px);
+  font-weight: 700;
+  line-height: 0.85;
+  background: linear-gradient(160deg, var(--gold2) 0%, var(--goldl) 40%, var(--gold) 70%, var(--gold3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: fadeUp 1s 1s forwards, goldShimmer 5s 2s infinite;
+  opacity: 0;
+  filter: drop-shadow(0 4px 20px rgba(201,168,76,0.3));
+}
+@keyframes goldShimmer {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.f-yillik {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(36px, 9vw, 56px);
+  color: var(--gold2);
+  line-height: 1;
+  opacity: 0; animation: fadeUp 1s 1.2s forwards;
+  text-shadow: 0 2px 20px rgba(201,168,76,0.25);
+}
+.f-anniversary {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(28px, 7vw, 44px);
+  color: rgba(240,222,160,0.85);
+  line-height: 1;
+  opacity: 0; animation: fadeUp 1s 1.4s forwards;
+}
+
+.f-school {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(8px, 2vw, 11px);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--goldl);
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0; animation: fadeUp 1s 1.6s forwards;
+  margin-top: 16px;
+  line-height: 2;
+}
+
+/* tap hint */
+.tap-hint {
+  position: absolute;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeUp 1s 2.2s forwards;
+}
+.tap-text {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(7px, 1.6vw, 9px);
+  letter-spacing: 0.4em;
+  color: rgba(201,168,76,0.7);
+  text-transform: uppercase;
+}
+.tap-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(201,168,76,0.5);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  animation: pulseRing 2s 2.5s infinite;
+}
+.tap-ring::after {
+  content: '✦';
+  color: var(--gold);
+  font-size: 12px;
+  animation: spinSlow 8s linear infinite;
+}
+@keyframes pulseRing {
+  0%,100% { transform: scale(1); opacity:1; }
+  50% { transform: scale(1.2); opacity:0.6; }
+}
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+
+/* ════════════════════════════
+   FACE 2 — DETAILS
+════════════════════════════ */
+.back {
+  transform: rotateY(180deg);
+  background: linear-gradient(160deg, var(--green3) 0%, var(--green) 45%, var(--green2) 100%);
+}
+.back::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+.back-border {
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(201,168,76,0.55);
+  z-index: 2;
+  pointer-events: none;
+}
+.back-border::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(201,168,76,0.25);
+}
+
+.back-content {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 40px;
+  gap: 0;
+}
+
+.b-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(10px, 2.4vw, 14px);
+  letter-spacing: 0.2em;
+  color: var(--gold2);
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.b-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(28px, 7vw, 44px);
+  color: var(--goldl);
+  text-align: center;
+  line-height: 1;
+  text-shadow: 0 2px 20px rgba(201,168,76,0.2);
+  margin-bottom: 20px;
+}
+
+.b-divider {
+  display: flex; align-items: center; gap: 10px;
+  width: 80%; margin: 12px 0;
+}
+.b-div-line { flex:1; height:1px; background: linear-gradient(to right, transparent, var(--gold3), transparent); }
+.b-div-ico { color: var(--gold); font-size: 11px; }
+
+/* info rows */
+.b-info { width: 100%; display: flex; flex-direction: column; gap: 14px; margin: 10px 0; }
+.b-row {
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.b-icon-wrap {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  background: rgba(201,168,76,0.08);
+}
+.b-texts {}
+.b-key {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(7px, 1.7vw, 9px);
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.b-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(14px, 3.5vw, 18px);
+  color: var(--goldl);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.b-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(11px, 2.7vw, 14px);
+  color: rgba(240,222,160,0.65);
+  text-align: center;
+  line-height: 1.7;
+  margin-top: 16px;
+  padding: 0 10px;
+}
+
+/* CTA button */
+.b-cta {
+  margin-top: 20px;
+  padding: 12px 36px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold2);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(8px, 2vw, 10px);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s;
+}
+.b-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--gold3), var(--gold));
+  transform: translateX(-101%);
+  transition: transform 0.45s cubic-bezier(0.77,0,0.18,1);
+  z-index: 0;
+}
+.b-cta span { position: relative; z-index: 1; }
+.b-cta:hover::before, .b-cta:active::before { transform: translateX(0); }
+.b-cta:hover, .b-cta:active { color: var(--green2); }
+
+/* Fireworks canvas */
+#fw-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* animations */
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(18px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+/* back face content animations (trigger after flip) */
+.card.flipped .back-content > * {
+  animation: fadeUp 0.7s both;
+}
+.card.flipped .back-content > *:nth-child(1) { animation-delay: 0.3s; }
+.card.flipped .back-content > *:nth-child(2) { animation-delay: 0.45s; }
+.card.flipped .back-content > *:nth-child(3) { animation-delay: 0.55s; }
+.card.flipped .back-content > *:nth-child(4) { animation-delay: 0.65s; }
+.card.flipped .back-content > *:nth-child(5) { animation-delay: 0.72s; }
+.card.flipped .back-content > *:nth-child(6) { animation-delay: 0.80s; }
+.card.flipped .back-content > *:nth-child(7) { animation-delay: 0.90s; }
+.card.flipped .back-content > *:nth-child(8) { animation-delay: 1.0s; }
+</style>
+</head>
+<body>
+
+<canvas id="fw-canvas"></canvas>
+
+<div class="scene" id="scene">
+  <div class="card" id="card" onclick="flipCard()">
+
+    <!-- ═══ FRONT ═══ -->
+    <div class="face front">
+      <div class="front-border"></div>
+
+      <!-- SVG corner ornaments -->
+      <div class="orn orn-tl">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M4 4 C4 4 30 4 40 4" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <path d="M4 4 C4 4 4 30 4 40" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity="0.8"/>
+          <path d="M4 4 Q16 4 20 8 Q28 16 20 24 Q14 30 20 36" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+          <path d="M4 4 Q4 16 8 20 Q16 28 24 20 Q30 14 36 20" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+          <circle cx="20" cy="4"  r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="40" cy="4"  r="1.2" fill="#c9a84c" opacity="0.4"/>
+          <circle cx="4"  cy="20" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="4"  cy="40" r="1.2" fill="#c9a84c" opacity="0.4"/>
+          <path d="M12 4 Q18 10 12 16 Q6 22 12 28" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.35"/>
+          <path d="M4 12 Q10 18 16 12 Q22 6 28 12" stroke="#c9a84c" stroke-width="0.5" fill="none" opacity="0.35"/>
+        </svg>
+      </div>
+      <div class="orn orn-tr">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M4 4 C4 4 30 4 40 4" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <path d="M4 4 C4 4 4 30 4 40" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity="0.8"/>
+          <path d="M4 4 Q16 4 20 8 Q28 16 20 24 Q14 30 20 36" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+          <path d="M4 4 Q4 16 8 20 Q16 28 24 20 Q30 14 36 20" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+          <circle cx="20" cy="4" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="40" cy="4" r="1.2" fill="#c9a84c" opacity="0.4"/>
+          <circle cx="4" cy="20" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="4" cy="40" r="1.2" fill="#c9a84c" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="orn orn-bl">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M4 4 C4 4 30 4 40 4" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <path d="M4 4 C4 4 4 30 4 40" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity="0.8"/>
+          <path d="M4 4 Q16 4 20 8 Q28 16 20 24 Q14 30 20 36" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+          <path d="M4 4 Q4 16 8 20 Q16 28 24 20 Q30 14 36 20" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+          <circle cx="20" cy="4" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="4"  cy="20" r="1.2" fill="#c9a84c" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="orn orn-br">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M4 4 C4 4 30 4 40 4" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <path d="M4 4 C4 4 4 30 4 40" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity="0.8"/>
+          <circle cx="20" cy="4" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="4"  cy="20" r="1.2" fill="#c9a84c" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <!-- floating particles -->
+      <div class="particles" id="particles"></div>
+
+      <!-- main content -->
+      <div class="front-content">
+        <p class="f-eyebrow">Jizzax viloyati · Do'stlik tumani · 2006</p>
+
+        <div class="f-line">
+          <div class="f-line-seg"></div>
+          <span class="f-line-dot">✦</span>
+          <div class="f-line-seg"></div>
+        </div>
+
+        <p class="f-happy">Hurmatli sinfdosh</p>
+
+        <div class="f-number">20</div>
+        <div class="f-yillik">Yillik</div>
+        <div class="f-anniversary">Uchrashuv</div>
+
+        <div class="f-line" style="animation-delay:1.5s">
+          <div class="f-line-seg"></div>
+          <span class="f-line-dot">◆</span>
+          <div class="f-line-seg"></div>
+        </div>
+
+        <p class="f-school">
+          4-o'rta umumta'lim maktabi<br>
+          «A» sinf bitiruvchilari · 2006
+        </p>
+      </div>
+
+      <!-- tap hint -->
+      <div class="tap-hint">
+        <div class="tap-ring"></div>
+        <p class="tap-text">Bosing</p>
+      </div>
+    </div><!-- /front -->
+
+    <!-- ═══ BACK ═══ -->
+    <div class="face back">
+      <div class="back-border"></div>
+
+      <!-- corners same as front -->
+      <div class="orn orn-tl">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M4 4 C4 4 30 4 40 4" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <path d="M4 4 C4 4 4 30 4 40" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity="0.8"/>
+          <path d="M4 4 Q16 4 20 8 Q28 16 20 24 Q14 30 20 36" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+          <path d="M4 4 Q4 16 8 20 Q16 28 24 20 Q30 14 36 20" stroke="#c9a84c" stroke-width="0.7" fill="none" opacity="0.5"/>
+          <circle cx="20" cy="4" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="40" cy="4" r="1.2" fill="#c9a84c" opacity="0.4"/>
+          <circle cx="4" cy="20" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="4" cy="40" r="1.2" fill="#c9a84c" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="orn orn-tr">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M4 4 C4 4 30 4 40 4" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <path d="M4 4 C4 4 4 30 4 40" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity="0.8"/>
+          <circle cx="20" cy="4" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="4" cy="20" r="1.2" fill="#c9a84c" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="orn orn-bl">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M4 4 C4 4 30 4 40 4" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <path d="M4 4 C4 4 4 30 4 40" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity="0.8"/>
+          <circle cx="20" cy="4" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="4" cy="20" r="1.2" fill="#c9a84c" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="orn orn-br">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M4 4 C4 4 30 4 40 4" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <path d="M4 4 C4 4 4 30 4 40" stroke="#c9a84c" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="4" cy="4" r="2.5" fill="#c9a84c" opacity="0.8"/>
+          <circle cx="20" cy="4" r="1.2" fill="#c9a84c" opacity="0.5"/>
+          <circle cx="4" cy="20" r="1.2" fill="#c9a84c" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="back-content">
+        <p class="b-title">Sizni taklif etamiz!</p>
+        <p class="b-script">20 Yillik Uchrashuv</p>
+
+        <div class="b-divider">
+          <div class="b-div-line"></div>
+          <span class="b-div-ico">✦</span>
+          <div class="b-div-line"></div>
+        </div>
+
+        <div class="b-info">
+          <div class="b-row">
+            <div class="b-icon-wrap">📅</div>
+            <div class="b-texts">
+              <div class="b-key">Kuni</div>
+              <div class="b-val">25-may, 2026 yil, yakshanba</div>
+            </div>
+          </div>
+          <div class="b-row">
+            <div class="b-icon-wrap">⏰</div>
+            <div class="b-texts">
+              <div class="b-key">Vaqti</div>
+              <div class="b-val">Soat 08:00</div>
+            </div>
+          </div>
+          <div class="b-row">
+            <div class="b-icon-wrap">📍</div>
+            <div class="b-texts">
+              <div class="b-key">Manzil</div>
+              <div class="b-val">Jizzax viloyati, Do'stlik tumani, 4-maktab</div>
+            </div>
+          </div>
+          <div class="b-row">
+            <div class="b-icon-wrap">🎓</div>
+            <div class="b-texts">
+              <div class="b-key">Sinf</div>
+              <div class="b-val">«A» sinf · 2006 yil bitiruvchilari</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="b-divider" style="margin-top:4px">
+          <div class="b-div-line"></div>
+          <span class="b-div-ico">◆</span>
+          <div class="b-div-line"></div>
+        </div>
+
+        <p class="b-quote">
+          "Yigirma yil avval birga orzu qildik,<br>
+          birga kuldik, birga o'sdik...<br>
+          Endi birga xotira yasaymiz!"
+        </p>
+
+        <button class="b-cta" onclick="event.stopPropagation(); confirmAttend()">
+          <span>🥂 &nbsp;Albatta boraman!</span>
+        </button>
+      </div>
+    </div><!-- /back -->
+
+  </div><!-- /card -->
+</div><!-- /scene -->
+
+<script>
+/* ── Particles ── */
+const pWrap = document.getElementById('particles');
+for (let i = 0; i < 22; i++) {
+  const p = document.createElement('div');
+  p.className = 'p';
+  const sz = 2 + Math.random() * 3;
+  p.style.cssText = `
+    width:${sz}px; height:${sz}px;
+    left:${Math.random()*100}%;
+    bottom:${Math.random()*20}%;
+    --d:${7+Math.random()*9}s;
+    --delay:${Math.random()*8}s;
+    --dx:${(Math.random()-.5)*80}px;
+    opacity:0;
+    background:${Math.random()>.5?'#c9a84c':'#e8c96a'};
+  `;
+  pWrap.appendChild(p);
+}
+
+/* ── Flip ── */
+let flipped = false;
+let bellPlayed = false;
+
+function flipCard() {
+  flipped = !flipped;
+  document.getElementById('card').classList.toggle('flipped', flipped);
+  if (flipped && !bellPlayed) {
+    bellPlayed = true;
+    setTimeout(playBell, 600);
+  }
+}
+
+/* ── Bell sound ── */
+function playBell() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    function tone(freq, start, dur, vol=0.45) {
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const rev  = ctx.createConvolver();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, start);
+      gain.gain.setValueAtTime(0, start);
+      gain.gain.linearRampToValueAtTime(vol, start + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + dur);
+      osc.start(start);
+      osc.stop(start + dur);
+
+      /* harmonic overtone */
+      const o2 = ctx.createOscillator();
+      const g2 = ctx.createGain();
+      o2.connect(g2); g2.connect(ctx.destination);
+      o2.type = 'sine';
+      o2.frequency.setValueAtTime(freq * 2.76, start);
+      g2.gain.setValueAtTime(0, start);
+      g2.gain.linearRampToValueAtTime(vol * 0.25, start + 0.01);
+      g2.gain.exponentialRampToValueAtTime(0.001, start + dur * 0.6);
+      o2.start(start); o2.stop(start + dur);
+    }
+    const t = ctx.currentTime;
+    /* church bell chord: C5 E5 G5 C6 */
+    tone(523.25, t,        3.5, 0.5);
+    tone(659.25, t+0.12,   3.2, 0.4);
+    tone(783.99, t+0.24,   3.0, 0.35);
+    tone(1046.5, t+0.38,   2.8, 0.45);
+    /* echo */
+    tone(523.25, t+1.2,    2.5, 0.25);
+    tone(1046.5, t+1.35,   2.2, 0.22);
+  } catch(e) { console.log('audio err', e); }
+}
+
+/* ── Fireworks ── */
+const canvas = document.getElementById('fw-canvas');
+const ctx2   = canvas.getContext('2d');
+let dots = [];
+
+function resizeCanvas() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function burst(x, y) {
+  const colors = ['#c9a84c','#e8c96a','#f0dea0','#ffffff','#a0d8ff','#ffb3b3'];
+  for (let i = 0; i < 50; i++) {
+    const angle = (i / 50) * Math.PI * 2;
+    const speed = 3 + Math.random() * 5;
+    dots.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 1,
+      alpha: 1,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      r: 1.5 + Math.random() * 2.5,
+      decay: 0.012 + Math.random() * 0.012
+    });
+  }
+}
+
+function animateFW() {
+  ctx2.clearRect(0, 0, canvas.width, canvas.height);
+  dots = dots.filter(d => d.alpha > 0.01);
+  dots.forEach(d => {
+    d.x += d.vx; d.y += d.vy;
+    d.vy += 0.12;
+    d.vx *= 0.98;
+    d.alpha -= d.decay;
+    ctx2.globalAlpha = Math.max(0, d.alpha);
+    ctx2.fillStyle = d.color;
+    ctx2.beginPath();
+    ctx2.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+    ctx2.fill();
+  });
+  ctx2.globalAlpha = 1;
+  requestAnimationFrame(animateFW);
+}
+animateFW();
+
+// ── Device SHAKE detector ──
+let lastX=0, lastY=0, lastZ=0;
+let shakeReady = true;
+let shakeThreshold = 18;
+
+function handleMotion(e) {
+  const acc = e.accelerationIncludingGravity;
+  if (!acc) return;
+  const dx = Math.abs(acc.x - lastX);
+  const dy = Math.abs(acc.y - lastY);
+  const dz = Math.abs(acc.z - lastZ);
+  lastX = acc.x; lastY = acc.y; lastZ = acc.z;
+  const total = dx + dy + dz;
+  if (total > shakeThreshold && shakeReady) {
+    shakeReady = false;
+    onShake();
+    setTimeout(() => { shakeReady = true; }, 2500);
+  }
+}
+
+function onShake() {
+  // Visual card shake
+  const card = document.getElementById("card");
+  card.classList.remove("shaking");
+  void card.offsetWidth;
+  card.classList.add("shaking");
+  setTimeout(() => card.classList.remove("shaking"), 800);
+  // Bell + fireworks
+  playBell();
+  const W = window.innerWidth, H = window.innerHeight;
+  const positions = [
+    [W*.5, H*.4], [W*.2, H*.5], [W*.8, H*.35],
+    [W*.35, H*.25], [W*.7, H*.28]
+  ];
+  positions.forEach(([x,y], i) => setTimeout(() => burst(x,y), i*250));
+}
+
+// Request permission (iOS 13+)
+if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
+  document.getElementById("scene").addEventListener("click", function askPerm() {
+    DeviceMotionEvent.requestPermission().then(state => {
+      if (state === "granted") window.addEventListener("devicemotion", handleMotion);
+    }).catch(console.error);
+    document.getElementById("scene").removeEventListener("click", askPerm);
+  }, { once: true });
+} else {
+  window.addEventListener("devicemotion", handleMotion);
+}
+
+function confirmAttend() {
+  /* bell again */
+  playBell();
+  /* 5 bursts */
+  const W = window.innerWidth, H = window.innerHeight;
+  const positions = [
+    [W*.5, H*.35], [W*.25, H*.45], [W*.75, H*.4],
+    [W*.4, H*.25], [W*.65, H*.3]
+  ];
+  positions.forEach(([x,y], i) => setTimeout(() => burst(x,y), i*280));
+}
+</script>
+</body>
+</html>
